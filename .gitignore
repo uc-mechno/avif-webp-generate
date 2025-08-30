@@ -1,0 +1,5 @@
+# node_modulesを除外する
+node_modules/
+
+# package-lock.jsonを除外する
+package-lock.json
