@@ -1,14 +1,12 @@
-# avif と webp を生成するリポジトリ
-gulpを使ってavif と webp を生成します。
+# avifとwebpを生成するリポジトリ
+gulpを使ってavifとwebpを生成します。
 ## ディレクトリ
 ```
 .
-├── .editorconfig
 ├── .gitignore
 ├── README.md
 ├── images
 ├── gulpfile.js
-├── package-lock.json
 └── package.json
 ```
 - `.editorconfig` EditorConfigの設定ファイル
