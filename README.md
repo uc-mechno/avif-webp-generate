@@ -45,6 +45,32 @@ npm run watch
 ```
 `images` フォルダを監視し、追加/更新されたら自動で変換します。
 
+### 出力された画像の用途
+
+画像の拡張子は.jpg.webpと.jpg.avifになります（jpgの場合）  
+そのまま使っていただいても構いませんが、.htaccessで出し分けることも可能です。
+```
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # --- AVIF対応なら ---
+  RewriteCond %{HTTP_ACCEPT} image/avif
+  RewriteCond %{REQUEST_FILENAME}.avif -f
+  RewriteRule (.+)\.(jpe?g|png|gif)$ $1.$2.avif [T=image/avif,E=accept:1]
+
+  # --- WebP対応なら ---
+  RewriteCond %{HTTP_ACCEPT} image/webp
+  RewriteCond %{REQUEST_FILENAME}.webp -f
+  RewriteRule (.+)\.(jpe?g|png|gif)$ $1.$2.webp [T=image/webp,E=accept:1]
+</IfModule>
+
+<IfModule mod_headers.c>
+  # キャッシュ対策
+  Header append Vary Accept env=REDIRECT_accept
+</IfModule>
+
+```
+
 ### 対応環境
 - Node.js 18 以上
 
